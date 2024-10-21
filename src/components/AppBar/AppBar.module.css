@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #282c34;
+    color: white;
+}
+
+
+
+.nav {
+    display: flex;
+}
+
+.link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #61dafb;
+}
