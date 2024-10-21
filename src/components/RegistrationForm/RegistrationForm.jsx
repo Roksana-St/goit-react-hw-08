@@ -14,7 +14,8 @@ const RegistrationForm = () => {
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = (values, { resetForm }) => {
+      console.log('Submitting:', values);
     dispatch(register(values));
     resetForm();
   };
