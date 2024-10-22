@@ -1,28 +1,23 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; 
-import { logOut } from '../../redux/auth/operations'; 
+import { useSelector } from 'react-redux'; 
 import styles from './AppBar.module.css'; 
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { Navigation } from '../Navigation/Navigation';
+import { AuthNav } from '../AuthNav/AuthNav';
+import { UserMenu } from '../UserMenu/UserMenu';
 
 const AppBar = () => {
-  const dispatch = useDispatch(); 
-  const navigate = useNavigate(); 
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const handleLogout = () => {
-    dispatch(logOut()); 
-    navigate('/'); 
-  };
-
-  return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <Link to="/" className={styles.link}>Home</Link>
-        <Link to="/login" className={styles.link}>Login</Link>
-        <Link to="/register" className={styles.link}>Register</Link>
-        <button onClick={handleLogout} className={styles.link}>Logout</button>
-      </nav>
-    </header>
-  );
+    return (
+        <header className={styles.header}>
+            <nav className={styles.nav}>
+                <Navigation />
+                {!isLoggedIn ? <AuthNav /> : <UserMenu />}
+            </nav>
+        </header>
+    );
 };
 
 export default AppBar;
+
